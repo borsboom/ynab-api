@@ -10,7 +10,8 @@
 
 
 
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct UpdateTransactionsWrapper {
     #[serde(rename = "transactions")]
     pub transactions: Vec<crate::models::UpdateTransaction>,
@@ -19,7 +20,7 @@ pub struct UpdateTransactionsWrapper {
 impl UpdateTransactionsWrapper {
     pub fn new(transactions: Vec<crate::models::UpdateTransaction>) -> UpdateTransactionsWrapper {
         UpdateTransactionsWrapper {
-            transactions: transactions,
+            transactions,
         }
     }
 }

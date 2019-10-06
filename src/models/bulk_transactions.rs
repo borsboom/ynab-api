@@ -10,7 +10,8 @@
 
 
 
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct BulkTransactions {
     #[serde(rename = "transactions")]
     pub transactions: Vec<crate::models::SaveTransaction>,
@@ -19,7 +20,7 @@ pub struct BulkTransactions {
 impl BulkTransactions {
     pub fn new(transactions: Vec<crate::models::SaveTransaction>) -> BulkTransactions {
         BulkTransactions {
-            transactions: transactions,
+            transactions,
         }
     }
 }

@@ -10,7 +10,8 @@
 
 
 
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct HybridTransactionAllOf {
     /// Whether the hybrid transaction represents a regular transaction or a subtransaction
     #[serde(rename = "type")]
@@ -29,9 +30,9 @@ pub struct HybridTransactionAllOf {
 impl HybridTransactionAllOf {
     pub fn new(_type: Type, account_name: String) -> HybridTransactionAllOf {
         HybridTransactionAllOf {
-            _type: _type,
+            _type,
             parent_transaction_id: None,
-            account_name: account_name,
+            account_name,
             payee_name: None,
             category_name: None,
         }
@@ -39,7 +40,7 @@ impl HybridTransactionAllOf {
 }
 
 /// Whether the hybrid transaction represents a regular transaction or a subtransaction
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum Type {
     #[serde(rename = "transaction")]
     Transaction,

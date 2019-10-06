@@ -10,7 +10,8 @@
 
 
 
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Category {
     #[serde(rename = "id")]
     pub id: String,
@@ -42,8 +43,8 @@ pub struct Category {
     #[serde(rename = "goal_creation_month", skip_serializing_if = "Option::is_none")]
     pub goal_creation_month: Option<String>,
     /// The goal target amount in milliunits
-    #[serde(rename = "goal_target")]
-    pub goal_target: i64,
+    #[serde(rename = "goal_target", skip_serializing_if = "Option::is_none")]
+    pub goal_target: Option<i64>,
     /// If the goal type is 'TBD' (Target Category Balance by Date), this is the target month for the goal to be completed
     #[serde(rename = "goal_target_month", skip_serializing_if = "Option::is_none")]
     pub goal_target_month: Option<String>,
@@ -56,29 +57,29 @@ pub struct Category {
 }
 
 impl Category {
-    pub fn new(id: String, category_group_id: String, name: String, hidden: bool, budgeted: i64, activity: i64, balance: i64, goal_target: i64, deleted: bool) -> Category {
+    pub fn new(id: String, category_group_id: String, name: String, hidden: bool, budgeted: i64, activity: i64, balance: i64, deleted: bool) -> Category {
         Category {
-            id: id,
-            category_group_id: category_group_id,
-            name: name,
-            hidden: hidden,
+            id,
+            category_group_id,
+            name,
+            hidden,
             original_category_group_id: None,
             note: None,
-            budgeted: budgeted,
-            activity: activity,
-            balance: balance,
+            budgeted,
+            activity,
+            balance,
             goal_type: None,
             goal_creation_month: None,
-            goal_target: goal_target,
+            goal_target: None,
             goal_target_month: None,
             goal_percentage_complete: None,
-            deleted: deleted,
+            deleted,
         }
     }
 }
 
 /// The type of goal, if the category has a goal (TB=Target Category Balance, TBD=Target Category Balance by Date, MF=Monthly Funding)
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum GoalType {
     #[serde(rename = "TB")]
     TB,

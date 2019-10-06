@@ -10,7 +10,8 @@
 
 
 
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct MonthSummary {
     #[serde(rename = "month")]
     pub month: String,
@@ -39,14 +40,14 @@ pub struct MonthSummary {
 impl MonthSummary {
     pub fn new(month: String, income: i64, budgeted: i64, activity: i64, to_be_budgeted: i64, deleted: bool) -> MonthSummary {
         MonthSummary {
-            month: month,
+            month,
             note: None,
-            income: income,
-            budgeted: budgeted,
-            activity: activity,
-            to_be_budgeted: to_be_budgeted,
+            income,
+            budgeted,
+            activity,
+            to_be_budgeted,
             age_of_money: None,
-            deleted: deleted,
+            deleted,
         }
     }
 }

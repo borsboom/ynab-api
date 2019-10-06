@@ -10,7 +10,8 @@
 
 
 
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct CategoryGroupWithCategories {
     #[serde(rename = "id")]
     pub id: String,
@@ -30,11 +31,11 @@ pub struct CategoryGroupWithCategories {
 impl CategoryGroupWithCategories {
     pub fn new(id: String, name: String, hidden: bool, deleted: bool, categories: Vec<crate::models::Category>) -> CategoryGroupWithCategories {
         CategoryGroupWithCategories {
-            id: id,
-            name: name,
-            hidden: hidden,
-            deleted: deleted,
-            categories: categories,
+            id,
+            name,
+            hidden,
+            deleted,
+            categories,
         }
     }
 }

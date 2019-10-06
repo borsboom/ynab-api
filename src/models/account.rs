@@ -10,7 +10,8 @@
 
 
 
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Account {
     #[serde(rename = "id")]
     pub id: String,
@@ -47,23 +48,23 @@ pub struct Account {
 impl Account {
     pub fn new(id: String, name: String, _type: Type, on_budget: bool, closed: bool, balance: i64, cleared_balance: i64, uncleared_balance: i64, transfer_payee_id: String, deleted: bool) -> Account {
         Account {
-            id: id,
-            name: name,
-            _type: _type,
-            on_budget: on_budget,
-            closed: closed,
+            id,
+            name,
+            _type,
+            on_budget,
+            closed,
             note: None,
-            balance: balance,
-            cleared_balance: cleared_balance,
-            uncleared_balance: uncleared_balance,
-            transfer_payee_id: transfer_payee_id,
-            deleted: deleted,
+            balance,
+            cleared_balance,
+            uncleared_balance,
+            transfer_payee_id,
+            deleted,
         }
     }
 }
 
 /// The type of account. Note: payPal, merchantAccount, investmentAccount, and mortgage types have been deprecated and will be removed in the future.
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum Type {
     #[serde(rename = "checking")]
     Checking,

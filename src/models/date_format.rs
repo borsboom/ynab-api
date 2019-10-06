@@ -11,7 +11,8 @@
 /// DateFormat : The date format setting for the budget.  In some cases the format will not be available and will be specified as null.
 
 
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct DateFormat {
     #[serde(rename = "format")]
     pub format: String,
@@ -21,7 +22,7 @@ impl DateFormat {
     /// The date format setting for the budget.  In some cases the format will not be available and will be specified as null.
     pub fn new(format: String) -> DateFormat {
         DateFormat {
-            format: format,
+            format,
         }
     }
 }

@@ -10,7 +10,8 @@
 
 
 
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct HybridTransactionsResponseData {
     #[serde(rename = "transactions")]
     pub transactions: Vec<crate::models::HybridTransaction>,
@@ -19,7 +20,7 @@ pub struct HybridTransactionsResponseData {
 impl HybridTransactionsResponseData {
     pub fn new(transactions: Vec<crate::models::HybridTransaction>) -> HybridTransactionsResponseData {
         HybridTransactionsResponseData {
-            transactions: transactions,
+            transactions,
         }
     }
 }

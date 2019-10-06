@@ -10,7 +10,8 @@
 
 
 
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct SaveMonthCategory {
     /// Budgeted amount in milliunits format
     #[serde(rename = "budgeted")]
@@ -20,7 +21,7 @@ pub struct SaveMonthCategory {
 impl SaveMonthCategory {
     pub fn new(budgeted: i64) -> SaveMonthCategory {
         SaveMonthCategory {
-            budgeted: budgeted,
+            budgeted,
         }
     }
 }

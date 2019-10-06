@@ -10,7 +10,8 @@
 
 
 
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct MonthSummariesResponseData {
     #[serde(rename = "months")]
     pub months: Vec<crate::models::MonthSummary>,
@@ -22,8 +23,8 @@ pub struct MonthSummariesResponseData {
 impl MonthSummariesResponseData {
     pub fn new(months: Vec<crate::models::MonthSummary>, server_knowledge: i64) -> MonthSummariesResponseData {
         MonthSummariesResponseData {
-            months: months,
-            server_knowledge: server_knowledge,
+            months,
+            server_knowledge,
         }
     }
 }

@@ -10,7 +10,8 @@
 
 
 
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct UserResponseData {
     #[serde(rename = "user")]
     pub user: crate::models::User,
@@ -19,7 +20,7 @@ pub struct UserResponseData {
 impl UserResponseData {
     pub fn new(user: crate::models::User) -> UserResponseData {
         UserResponseData {
-            user: user,
+            user,
         }
     }
 }

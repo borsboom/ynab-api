@@ -10,7 +10,8 @@
 
 
 
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Payee {
     #[serde(rename = "id")]
     pub id: String,
@@ -27,10 +28,10 @@ pub struct Payee {
 impl Payee {
     pub fn new(id: String, name: String, deleted: bool) -> Payee {
         Payee {
-            id: id,
-            name: name,
+            id,
+            name,
             transfer_account_id: None,
-            deleted: deleted,
+            deleted,
         }
     }
 }

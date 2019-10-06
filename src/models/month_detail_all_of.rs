@@ -10,7 +10,8 @@
 
 
 
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct MonthDetailAllOf {
     /// The budget month categories.  Amounts (budgeted, activity, balance, etc.) are specific to the {month} parameter specified.
     #[serde(rename = "categories")]
@@ -20,7 +21,7 @@ pub struct MonthDetailAllOf {
 impl MonthDetailAllOf {
     pub fn new(categories: Vec<crate::models::Category>) -> MonthDetailAllOf {
         MonthDetailAllOf {
-            categories: categories,
+            categories,
         }
     }
 }

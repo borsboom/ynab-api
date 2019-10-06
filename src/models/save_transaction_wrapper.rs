@@ -10,7 +10,8 @@
 
 
 
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct SaveTransactionWrapper {
     #[serde(rename = "transaction")]
     pub transaction: crate::models::SaveTransaction,
@@ -19,7 +20,7 @@ pub struct SaveTransactionWrapper {
 impl SaveTransactionWrapper {
     pub fn new(transaction: crate::models::SaveTransaction) -> SaveTransactionWrapper {
         SaveTransactionWrapper {
-            transaction: transaction,
+            transaction,
         }
     }
 }

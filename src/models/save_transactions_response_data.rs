@@ -10,7 +10,8 @@
 
 
 
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct SaveTransactionsResponseData {
     /// The transaction ids that were saved
     #[serde(rename = "transaction_ids")]
@@ -31,11 +32,11 @@ pub struct SaveTransactionsResponseData {
 impl SaveTransactionsResponseData {
     pub fn new(transaction_ids: Vec<String>, server_knowledge: i64) -> SaveTransactionsResponseData {
         SaveTransactionsResponseData {
-            transaction_ids: transaction_ids,
+            transaction_ids,
             transaction: None,
             transactions: None,
             duplicate_import_ids: None,
-            server_knowledge: server_knowledge,
+            server_knowledge,
         }
     }
 }

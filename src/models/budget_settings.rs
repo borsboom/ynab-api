@@ -10,7 +10,8 @@
 
 
 
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
+
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct BudgetSettings {
     #[serde(rename = "date_format")]
     pub date_format: crate::models::DateFormat,
@@ -21,8 +22,8 @@ pub struct BudgetSettings {
 impl BudgetSettings {
     pub fn new(date_format: crate::models::DateFormat, currency_format: crate::models::CurrencyFormat) -> BudgetSettings {
         BudgetSettings {
-            date_format: date_format,
-            currency_format: currency_format,
+            date_format,
+            currency_format,
         }
     }
 }
