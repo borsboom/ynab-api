@@ -12,7 +12,7 @@ use crate::util::*;
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Hash, PartialEq, Serialize, Deserialize)]
 pub struct HybridTransaction {
     #[serde(rename = "id")]
     pub id: String,
