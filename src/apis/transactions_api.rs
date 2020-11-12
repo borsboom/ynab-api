@@ -59,6 +59,7 @@ impl TransactionsApi for TransactionsApiClient {
             };
             req_builder = req_builder.header("Authorization", val);
         };
+        println!("@@@ create_transaction: {}", serde_json::to_string_pretty(&data).expect("@@@ CAN SERIALIZE DATA"));
         req_builder = req_builder.json(&data);
 
         // send request
