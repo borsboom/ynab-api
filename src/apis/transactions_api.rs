@@ -59,13 +59,16 @@ impl TransactionsApi for TransactionsApiClient {
             };
             req_builder = req_builder.header("Authorization", val);
         };
-        println!("@@@ create_transaction: {}", serde_json::to_string_pretty(&data).expect("@@@ CAN SERIALIZE DATA"));
+        println!("@@@ create_transaction REQUEST: {}", serde_json::to_string_pretty(&data).expect("@@@ CAN SERIALIZE DATA"));
         req_builder = req_builder.json(&data);
 
         // send request
         let req = req_builder.build()?;
 
-        Ok(client.execute(req)?.error_for_status()?.json()?)
+        //@@@ Ok(client.execute(req)?.error_for_status()?.json()?)
+        let res = client.execute(req)?;
+        println!("@@@ create_transaction RESPONSE: {:?}", res);
+        Ok(res.error_for_status()?.json()?)
     }
 
     fn get_transaction_by_id(&self, budget_id: &str, transaction_id: &str) -> Result<crate::models::TransactionResponse, Error> {
@@ -273,13 +276,16 @@ impl TransactionsApi for TransactionsApiClient {
             };
             req_builder = req_builder.header("Authorization", val);
         };
-        println!("@@@ update_transactions: {}", serde_json::to_string_pretty(&data).expect("@@@ CAN SERIALIZE DATA"));
+        println!("@@@ update_transactions REQUEST: {}", serde_json::to_string_pretty(&data).expect("@@@ CAN SERIALIZE DATA"));
         req_builder = req_builder.json(&data);
 
         // send request
         let req = req_builder.build()?;
 
-        Ok(client.execute(req)?.error_for_status()?.json()?)
+        //@@@ Ok(client.execute(req)?.error_for_status()?.json()?)
+        let res = client.execute(req)?;
+        println!("@@@ update_transaction RESPONSE: {:?}", res);
+        Ok(res.error_for_status()?.json()?)
     }
 
 }
